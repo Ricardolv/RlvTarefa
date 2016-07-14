@@ -1,8 +1,17 @@
 function getTaks() {
 
-  this.itens = [{name: 'item 01', finished: false},
-                {name: 'item 02', finished: false},
-                {name: 'item 03', finished: false}];
+  this.itens = [];
+
+  var list = localStorage.getItem("taskList");
+
+  if (list !== null) {
+    this.itens = angular.fromJson(list);
+  }
+
+  this.save = function () {
+    var list = angular.toJson(this.itens);
+    localStorage.setItem("taskList", list);
+  }
 
   this.add = function(item) {
       this.itens.push(item);

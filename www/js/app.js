@@ -47,6 +47,7 @@ app.controller('mainController', function($scope, $ionicPopup, $ionicListDelegat
                 if(novo) {
                   tasks.add(item);
                 }
+                tasks.save();
               }},
             {text: "Cancelar"}
         ]
@@ -58,6 +59,7 @@ app.controller('mainController', function($scope, $ionicPopup, $ionicListDelegat
 
     $scope.onMarkTask = function(item) {
         item.finished = !item.finished;
+        tasks.save();
     };
 
     $scope.onHideItem = function(item) {
@@ -75,6 +77,7 @@ app.controller('mainController', function($scope, $ionicPopup, $ionicListDelegat
 
     $scope.onItemRemove = function(item) {
       tasks.remove(item);
+      tasks.save();
     };
 
     $scope.onClickRemove = function() {
