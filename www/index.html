@@ -54,13 +54,14 @@
 
 
       <ion-content>
-
-        <ion-list>
+        <button class="button button-block button-assertive" ng-click="onClickRemove()">Remove</button>
+        <ion-list show-delete="removeStatus">
             <ion-item ng-repeat="item in lista track by $index" ng-hide="onHideItem(item)">
 
                 <div class="row">
                     <div class="col col-90">
                         {{item.name}}
+                        <ion-delete-button class="ion-minus-circled" ng-click="onItemRemove(item)"></ion-delete-button>
                     </div>
                     <div class="col col-10">
                         <button class="button button-small button-dark button-outline" ng-click="onMarkTask(item)"> <i class="icon ion-checkmark" ng-show="item.finished"></i></button>

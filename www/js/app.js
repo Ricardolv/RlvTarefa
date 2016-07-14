@@ -30,6 +30,7 @@ app.controller('mainController', function($scope) {
 
     $scope.lista = tasks.itens;
     $scope.showMarked = false;
+    $scope.removeStatus = false;
 
 
     $scope.onMarkTask = function(item) {
@@ -38,5 +39,14 @@ app.controller('mainController', function($scope) {
 
     $scope.onHideItem = function(item) {
       return item.finished && !$scope.showMarked;
+    };
+
+
+    $scope.onItemRemove = function(item) {
+      tasks.remove(item);
+    };
+
+    $scope.onClickRemove = function() {
+      $scope.removeStatus = !$scope.removeStatus;
     };
 });
