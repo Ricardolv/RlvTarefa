@@ -32,29 +32,34 @@
       <ion-footer-bar class="bar-calm">
 
         <div class="row">
+            <div class="col col-80">
+                <strong>Exibir finalizadas</strong>
+            </div>
+            <div class="col col-80">
+              <label class="toggle">
+                 <input type="checkbox" ng-model="showMarked">
+                 <div class="track">
+                   <div class="handle">
 
-          <div class="col col-80">
-              <strong>Exibir finalizadas</strong>
-          </div>
-          <div class="col col-80">
-            <label class="toggle">
-               <input type="checkbox" ng-model="showMarked">
-               <div class="track">
-                 <div class="handle">
-
+                   </div>
                  </div>
-               </div>
-            </label>
-          </div>
-
+              </label>
+            </div>
         </div>
 
       </ion-footer-bar>
 
-
-
       <ion-content>
-        <button class="button button-block button-assertive" ng-click="onClickRemove()">Remove</button>
+
+        <div class="row">
+            <div class="col col-50">
+                <button class="button button-block button-positive" ng-click="onItemAdd()">Adicionar</button>
+            </div>
+            <div class="col col-50">
+              <button class="button button-block button-assertive" ng-click="onClickRemove()">Remover</button>
+            </div>
+        </div>
+
         <ion-list show-delete="removeStatus">
             <ion-item ng-repeat="item in lista track by $index" ng-hide="onHideItem(item)">
 
