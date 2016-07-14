@@ -25,31 +25,34 @@ app.run(function($ionicPlatform) {
   });
 });
 
-app.controller('mainController', function($scope, $ionicPopup) {
+app.controller('mainController', function($scope, $ionicPopup, $ionicListDelegate) {
     var tasks = new getTaks();
 
     $scope.lista = tasks.itens;
     $scope.showMarked = false;
     $scope.removeStatus = false;
 
-    function getItem(item) {
+    function getItem(item, novo) {
       $scope.data = {};
-      $scope.data.newTask = "";
+      $scope.data.newTask = item.name;
 
       $ionicPopup.show({
-        title: "Nova Tarefa",
+        title: $scope.data.newTask == '' ? "Nova Tarefa" : "Editar Tarefa" ,
         scope: $scope,
-        template: "<input type='text' placeholder='tarefa' autofocus='true' ng-model='newTask'>" ,
+        template: "<input type='text' placeholder='tarefa' autofocus='true' ng-model='data.newTask'>" ,
         buttons: [
             {text: "Inserir",
               onTap: function(e) {
                 item.name = $scope.data.newTask;
-
-                tasks.add(item);
+                if(novo) {
+                  tasks.add(item);
+                }
               }},
             {text: "Cancelar"}
         ]
       });
+
+      $ionicListDelegate.closeOptionButtons();
     };
 
 
@@ -62,9 +65,12 @@ app.controller('mainController', function($scope, $ionicPopup) {
     };
 
     $scope.onItemAdd = function() {
-      var item = {name : "teste add", finished: false};
-      getItem(item);
+      var item = {name: "", finished: false};
+      getItem(item, true);
+    };
 
+    $scope.onItemEdit = function(item) {
+      getItem(item, false);
     };
 
     $scope.onItemRemove = function(item) {
